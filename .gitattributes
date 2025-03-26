@@ -1,0 +1,7 @@
+* text=auto
+
+* linguist-vendored
+*.py linguist-vendored=false
+
+#########################################################################
+#*.html     diff=python
