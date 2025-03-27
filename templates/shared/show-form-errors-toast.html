@@ -1,0 +1,56 @@
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <!-- Non-field Errors (e.g., incorrect username/password) -->
+  {% for error in form.non_field_errors %}
+  <div
+    class="toast bg-danger text-white"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-danger text-white">
+      <strong class="me-auto">Error</strong>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">{{ error }}</div>
+  </div>
+  {% endfor %}
+
+  <!-- Field-specific Errors -->
+  {% for field in form %} {% for error in field.errors %}
+  <div
+    class="toast bg-danger text-white"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-danger text-white">
+      <strong class="me-auto">Error</strong>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">{{ error }}</div>
+  </div>
+  {% endfor %} {% endfor %}
+</div>
+
+<!-- Show Toasts Script -->
+{% if form.errors or form.non_field_errors %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".toast").forEach((toastEl) => {
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    });
+  });
+</script>
+{% endif %}
