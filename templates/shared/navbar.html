@@ -1,1 +1,36 @@
-<header>This is header</header>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div
+    class="container d-flex p-2 flex-wrap align-items-center justify-content-between"
+  >
+    <a
+      href="{% url 'home' %}"
+      class="text-success text-decoration-none fs-5 fw-bold"
+      >DjangoBlog</a
+    >
+
+    <div class="d-flex align-items-center">
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+        <input
+          type="search"
+          class="form-control form-control-dark"
+          placeholder="Search..."
+          aria-label="Search"
+        />
+      </form>
+
+      <div class="text-end">
+        {%if user.is_authenticated%}
+        <span>{{ user.username }}</span>
+        <a href="{% url 'logout' %}"></a>
+        {%else%}
+        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">
+          Login
+        </a>
+        <a href="{% url 'login' %}" class="btn btn-outline-secondary"
+          >Sign-up</a
+        >
+        {%endif%}
+      </div>
+    </div>
+  </div>
+</nav>
